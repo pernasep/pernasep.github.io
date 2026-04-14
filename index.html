@@ -1,70 +1,435 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/icone.png">
-    <title>William Gabriel Meneghini</title>
+    <title>William | WG Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --term-bg: #111111;
+            --term-border: #2a2a2a;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-green: #00ff41; 
+            --accent-blue: #3b82f6;
+            --font-mono: 'Fira Code', monospace;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar com a Logo Minimalista WG */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--term-border);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-green); }
+
+        /* Estrutura das Seções */
+        section {
+            min-height: 100vh;
+            padding: 120px 10% 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative; /* Para posicionar o scroll indicator */
+        }
+
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--text-main);
+        }
+        .section-title::before {
+            content: "william@os:~/$ ";
+            color: var(--accent-green);
+        }
+
+        /* Hero Grid - Dividindo a tela em duas metades */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Animação da Ilustração Minimalista */
+        .illustration-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Componente de Janela de Terminal */
+        .term-window {
+            background: var(--term-bg);
+            border: 1px solid var(--term-border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            width: 100%;
+        }
+
+        .term-header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--term-border);
+        }
+
+        .term-controls { display: flex; gap: 8px; }
+        .control { width: 12px; height: 12px; border-radius: 50%; }
+        .close { background: #ff5f56; }
+        .min { background: #ffbd2e; }
+        .max { background: #27c93f; }
+
+        .term-title {
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .term-body {
+            padding: 2rem;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+        }
+
+        /* Hero Text e Botão */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.1em;
+            background-color: var(--accent-green);
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+        }
+
+        /* INDICADOR DE SCROLL ANIMADO */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInScroll 2s forwards 3.5s;
+            text-decoration: none;
+        }
+
+        .mouse {
+            width: 26px;
+            height: 40px;
+            border: 2px solid var(--text-muted);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding-top: 6px;
+            margin-bottom: 8px;
+        }
+
+        .wheel {
+            width: 4px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 2px;
+            animation: scrollWheel 2s infinite;
+        }
+
+        .scroll-text {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        @keyframes scrollWheel {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(10px); opacity: 0; }
+        }
+
+        @keyframes fadeInScroll {
+            to { opacity: 1; }
+        }
+
+        /* Grid de Projetos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card { margin-bottom: 0; }
+        .project-card .term-body { display: flex; flex-direction: column; gap: 1rem; }
+        .project-title { color: var(--text-main); font-weight: bold; font-family: var(--font-sans); font-size: 1.2rem;}
+        .project-tech { color: var(--accent-green); font-size: 0.85rem; }
+
+        /* Sobre */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .skills-list { list-style: none; }
+        .skills-list li { margin-bottom: 0.8rem; color: var(--text-muted); }
+        .skills-list li::before {
+            content: ">> ";
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Responsividade */
+        @media (max-width: 968px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .illustration-container { display: none; }
+            .about-content { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+            .nav-links { justify-content: center; gap: 1rem; flex-wrap: wrap; }
+            .scroll-indicator { display: none; /* Esconde no celular para não atrapalhar */ }
+        }
+    </style>
 </head>
 <body>
-    
-    
-    
-    
-    <h1 align="center"> Site em Construção! </h1>
-    <center> <iframe width="560" heigth="560" src="https://youtube.com/embed/DiKvx0gRfaQ" title="Youtube Video Player" frameborder="2"> </iframe></center>
-    <img style= "display: block;
-    margin: auto;"  src="img/emconstrucao.gif" alt="Foto da Sociedade Esportiva Palmeiras" width="40%">
 
-<a href="#ferramentas">Ferramentas TECWEB</a>
-<br><!-- quebra de linha -->
-<br>
-<a href="#fim">Ir para o Fim</a>
- <p>
-     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae omnis odit eveniet quod, facere veritatis tempora ab minima beatae reiciendis inventore quibusdam nulla ad totam dignissimos exercitationem, consequatur accusantium. Neque eum, tempora ipsum, placeat voluptatum in ut voluptatibus deleniti, facilis quod maxime possimus quia quibusdam officiis? Pariatur a dolorem omnis! Perspiciatis qui, architecto tempora harum laudantium quisquam officia molestias enim deleniti earum cum nostrum quae recusandae voluptatum. Sunt, ratione. Excepturi iste voluptatem obcaecati odio, temporibus tempora inventore quia itaque nam labore incidunt cumque blanditiis cum quos vel commodi! Nisi impedit ab eum explicabo magnam ducimus in possimus eveniet illo deserunt?
- </p>
- <p>
-     Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum assumenda, quibusdam sed eaque incidunt asperiores et recusandae, neque mollitia eligendi nesciunt animi repudiandae qui corporis error in fugiat tempora aut voluptas magnam odit, enim laudantium quos sunt. Officiis fuga facilis praesentium magnam? Saepe ullam reiciendis error? Explicabo minima rerum iure, reprehenderit pariatur sapiente nam exercitationem consequuntur, est ducimus, molestiae laborum perferendis dicta eius quo fugit consectetur id cumque natus incidunt fugiat commodi necessitatibus? Commodi nesciunt optio adipisci cupiditate porro ut? Asperiores, totam perspiciatis. Sapiente exercitationem, id saepe consequuntur impedit soluta expedita blanditiis architecto odio a at in, asperiores cumque maxime.
- </p>
- <p>
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium molestiae nam obcaecati quod amet modi ratione dolorum! Fuga magni hic totam exercitationem voluptate? Earum id dolore doloremque a minus assumenda? At itaque debitis qui aliquam dolorum, excepturi dignissimos unde illo modi, quod velit, hic iste? Perferendis excepturi saepe ad laboriosam exercitationem ducimus voluptatum beatae. Quos reprehenderit sapiente ea, tenetur necessitatibus asperiores praesentium, sit numquam nihil doloribus possimus consectetur a rem. Sint error commodi, voluptatem sapiente, autem aut ducimus quibusdam ipsum rerum sunt molestiae deleniti! Corporis, libero laboriosam nesciunt ducimus unde eligendi ratione nihil consequatur eveniet aut? Deleniti eos distinctio dicta!
- </p>
- <p>
-     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque rem, veniam cupiditate nobis consectetur ea harum dicta animi vitae tenetur assumenda eius amet ut, odio aliquam qui, voluptate libero! Nam assumenda maiores dolore, adipisci earum soluta! Repellat voluptate ratione tempore vitae enim. Dicta molestias quibusdam, itaque doloremque delectus minima veritatis harum, dolores, ea necessitatibus veniam saepe voluptatem sapiente. A nulla inventore quia enim possimus maiores quidem laboriosam impedit earum velit, minus itaque provident facere eum, sapiente ducimus accusamus laudantium. Hic molestiae sed est dicta illum pariatur velit, sequi ipsum! Ipsam doloremque voluptas quisquam saepe blanditiis praesentium repellat eaque velit laboriosam natus? Ullam, qui voluptatibus? Sunt, pariatur tempore commodi, debitis ipsam quisquam asperiores veniam ipsum dolorem vero voluptates facilis libero, consequatur aut reiciendis inventore tempora? Aperiam quam nam a modi adipisci officia non. Beatae perspiciatis vitae veniam ipsam quis accusamus magnam sed sit autem placeat veritatis deserunt praesentium fuga rem, ab commodi sunt, itaque maiores non odit vero. Minus quam libero, numquam suscipit, quos ab ipsa commodi error asperiores velit necessitatibus officia ipsam ratione id similique et eaque, illum repellendus accusantium eos autem corrupti nesciunt? Atque, voluptatibus. Illo nobis quia perspiciatis repellendus, aliquid sunt asperiores exercitationem aliquam culpa nesciunt necessitatibus, possimus obcaecati officia rem nisi amet quae id! Enim similique quisquam reiciendis repellendus vero impedit ipsam tenetur, perferendis dolor, aliquam velit modi eum ratione officiis voluptate. Consequatur quia, maxime provident est quasi neque expedita quibusdam? Recusandae consequuntur sapiente perspiciatis praesentium doloremque error quidem deserunt, nostrum similique voluptas. Quaerat delectus fuga, natus sunt esse nesciunt facere omnis iusto doloribus ipsam iste labore ipsa aliquid non incidunt sapiente placeat odio reiciendis similique laborum ullam, ut commodi! Necessitatibus minima ea nostrum quidem cumque ad aut obcaecati iusto enim totam perspiciatis, excepturi alias repellat. Harum saepe explicabo porro rem eaque? A numquam tempora, id exercitationem perferendis soluta aliquam corporis itaque quas animi nihil totam, praesentium cumque reprehenderit nulla excepturi enim autem officia quibusdam provident quia? Numquam porro eius ut saepe vel nostrum labore dicta placeat quia, dolor facere temporibus hic odio fuga molestiae repellat? Quasi atque at veniam nostrum! Omnis delectus voluptates, laborum nobis vitae non at, sed id ipsum mollitia dicta, incidunt iusto. Sunt perspiciatis dolorem autem omnis enim vitae officiis obcaecati totam non eius cum doloribus quas perferendis, reprehenderit sed dolor esse provident harum nostrum? Alias sit iusto accusamus quo molestiae minima iure, ex ipsum unde voluptas delectus suscipit, nam repudiandae aut? Quasi eius libero, voluptates assumenda reiciendis eveniet molestias, blanditiis iure totam doloremque quibusdam laborum expedita omnis, corporis voluptatem! Adipisci doloremque omnis placeat consequuntur rem, eos, quidem incidunt eveniet fugit maiores voluptas laborum explicabo quasi fugiat, dolore aspernatur qui suscipit recusandae nemo nostrum ipsam eaque facilis soluta numquam. Corporis doloribus nemo debitis, soluta quaerat numquam quod eligendi obcaecati asperiores officiis quae, autem deserunt dolorem similique doloremque eveniet. Et nesciunt asperiores similique quo. Laboriosam magnam vitae amet unde laudantium nobis a adipisci, tempora quaerat culpa quam, quidem dolorem, nostrum modi assumenda ipsa molestias ut. Dicta facere qui asperiores illo ex, est eum eius quas corporis officia. Totam ex hic cumque sint facere magni dicta nisi, et magnam mollitia vel architecto veritatis repudiandae officia enim autem debitis fugit repellat amet accusantium reprehenderit perferendis error aliquam? Consectetur, hic est aliquam nemo aperiam officiis et iste sequi fugit tempore impedit ipsa, explicabo eos. Alias totam inventore dolores! Repudiandae minus asperiores blanditiis aspernatur ut distinctio fugiat quod earum modi necessitatibus placeat illo sunt tenetur ea sint dignissimos natus ad nemo officiis enim, laborum nisi ullam! Blanditiis, repellat accusamus, aliquam ad ex laudantium vero officiis suscipit quam enim asperiores architecto doloremque non, voluptatem corrupti. Architecto incidunt dicta expedita aliquam. Quidem nulla blanditiis placeat perferendis eaque incidunt. Sint dicta laborum omnis similique recusandae quisquam provident veniam repudiandae? Repellat officia sunt quam tenetur, odio optio quas accusamus dolores neque repudiandae, cumque voluptatem nulla natus aliquid ipsam praesentium ab est cupiditate? Necessitatibus culpa possimus velit dolorem nulla excepturi voluptate nesciunt deserunt, incidunt facere natus non? Rerum repudiandae possimus fugit quos cum aliquam ab inventore esse quas molestiae ad, ea temporibus id laboriosam ipsum eligendi eaque? Distinctio sequi quod excepturi nisi laudantium eius id praesentium natus, tenetur illum iste suscipit esse accusantium nemo eos rerum quibusdam nesciunt dolor? Culpa natus temporibus sed vitae iusto laboriosam tempore doloribus nobis, minima deleniti nihil earum magni pariatur, iste quibusdam vero. Necessitatibus doloribus architecto omnis facere. Voluptas esse doloremque porro reiciendis temporibus fuga soluta debitis beatae consequuntur reprehenderit, molestias molestiae recusandae distinctio illum, incidunt error placeat fugit iure quibusdam rem numquam? Dolore consequatur officia perspiciatis distinctio nesciunt beatae non aut tempore illo qui? Temporibus accusantium aut consectetur suscipit asperiores, sed totam eaque modi illum at sequi corrupti optio laboriosam! Excepturi obcaecati necessitatibus nobis odit praesentium, accusamus debitis enim sequi quis, molestias iste repudiandae eum libero voluptates blanditiis impedit velit adipisci iusto? Provident possimus explicabo porro itaque, a facilis quis optio quos. Veritatis cumque voluptas, dolore voluptates, exercitationem quo quaerat ab eius corrupti vitae numquam provident ipsa ducimus laborum. Obcaecati quidem, magni molestias facere ea quibusdam cupiditate voluptas ducimus ut, asperiores ab numquam fugit quo iure veritatis placeat, impedit corporis. Ducimus doloremque expedita perspiciatis, impedit dolor esse ipsam rerum qui necessitatibus praesentium quasi odit eveniet ullam nam deserunt, rem sapiente consectetur nostrum corrupti voluptates ex alias ea! Aperiam accusantium libero ut aliquid modi laboriosam sit, obcaecati dolore! Eligendi minima porro repellat delectus asperiores quasi nobis aliquam mollitia harum. Nulla ex recusandae sapiente amet soluta veritatis asperiores ipsum quis error culpa maxime fugiat veniam quod repellendus, rerum sunt dicta blanditiis, temporibus hic cum natus debitis? Minus perspiciatis quod repellat placeat sed obcaecati accusantium. Libero, qui, voluptas architecto possimus explicabo dolore inventore illo corporis nemo eligendi vero eaque, ab veritatis cumque. Temporibus repudiandae quas harum? Doloremque commodi cum fugit animi ducimus. Sed exercitationem odit magnam asperiores corrupti, quaerat velit dolore autem doloribus aliquam delectus deserunt quis cumque alias reprehenderit eligendi praesentium consequuntur provident nihil amet rem et eveniet ut. Sint error quos incidunt minus in, impedit ratione cupiditate quidem excepturi, illo, repudiandae illum culpa id libero soluta fuga quis.
- </p>
+    <nav>
+        <a href="logo.png" class="logo-container">
+            <svg height="35" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="32" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="#e2e8f0" letter-spacing="-3">W</text>
+                <text x="32" y="32" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="var(--accent-green)" letter-spacing="-3">G</text>
+                <polygon points="85,10 88,19 98,19 90,25 93,34 85,28 77,34 80,25 72,19 82,19" fill="var(--accent-green)"/>
+            </svg>
+        </a>
+        <div class="nav-links">
+            <a href="#hero">~/inicio</a>
+            <a href="#projetos">~/projetos</a>
+            <a href="#sobre">~/sobre</a>
+        </div>
+    </nav>
 
-<h1 align="center">Conteúdos da aula do dia 27/02 </h1>    
-<hr> <!-- Linha Horizontal -->
+    <section id="hero">
+        <div class="hero-grid">
+            
+            <div class="term-window">
+                <div class="term-header">
+                    <div class="term-controls">
+                        <div class="control close"></div>
+                        <div class="control min"></div>
+                        <div class="control max"></div>
+                    </div>
+                    <div class="term-title">bash - william@dev</div>
+                </div>
+                <div class="term-body">
+                    <div style="color: var(--text-muted); margin-bottom: 1rem;">Conectado a william-os...</div>
+                    <span style="color: var(--accent-green)">guest@william:~$</span> ./start.sh <br><br>
+                    <div id="typewriter" style="min-height: 80px;"></div><span class="cursor"></span>
+                    <br>
+                    <a href="#projetos" class="btn" style="opacity: 0; animation: fadeIn 1s forwards 2.5s;">> cd Projetos</a>
+                </div>
+            </div>
 
-<h1 align="center" id="ferramentas">Ferramentas TECWEB</h1><!-- Título -->
-	<ul><!-- Lista não ordenada (ol é lista ordenada 1. 2. 3...)-->
-		<!-- <li> são os itens da lista </li> -->
-        <li><a href="https://www.google.com"><img src="img/google.png" alt="Google"> Google</a></li>
-		<li><a href="https://www.youtube.com"><img src="youtube.png" alt="YouTube">YouTube</a></li>
-		<li><a href="https://www.facebook.com"><img src="facebook.png" alt="Facebook">Facebook</a></li>
-		<li><a href="https://www.instagram.com"><img src="instagram.png" alt="Instagram">Instagram</a></li>
-		<li><a href="https://www.twitter.com"><img src="twitter.png" alt="Twitter">Twitter</a></li>
-		<li><a href="https://www.linkedin.com"><img src="linkedin.png" alt="LinkedIn">LinkedIn</a></li>
-		<li><a href="https://www.github.com"><img src="github.png" alt="GitHub">GitHub</a></li>
-		<li><a href="https://www.apple.com"><img src="apple.png" alt="Apple">Apple</a></li>
-		<li><a href="https://www.microsoft.com"><img src="microsoft.png" alt="Microsoft">Microsoft</a></li>
-		<li><a href="https://www.amazon.com"><img src="amazon.png" alt="Amazon">Amazon</a></li>
-		<li><a href="https://www.wikipedia.org"><img src="wikipedia.png" alt="Wikipedia">Wikipedia</a></li>
-		<li><a href="https://www.yahoo.com"><img src="yahoo.png" alt="Yahoo">Yahoo</a></li>
-		<li><a href="https://www.netflix.com"><img src="netflix.png" alt="Netflix">Netflix</a></li>
-		<li><a href="https://www.reddit.com"><img src="reddit.png" alt="Reddit">Reddit</a></li>
-		<li><a href="https://www.twitch.tv"><img src="twitch.png" alt="Twitch">Twitch</a></li>
-		<li><a href="https://www.spotify.com"><img src="spotify.png" alt="Spotify">Spotify</a></li>
-		<li><a href="https://www.discord.com"><img src="discord.png" alt="Discord">Discord</a></li>
-		<li><a href="https://www.quora.com"><img src="quora.png" alt="Quora">Quora</a></li>
-	</ul>
-<footer>
-    <p id="fim">Rodapé do site</p>
-</footer>
+            <div class="illustration-container">
+                <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 200 L180 120 L280 120" stroke="#2a2a2a" stroke-width="2" stroke-dasharray="6 6"/>
+                    <path d="M100 200 L180 280 L280 280" stroke="#2a2a2a" stroke-width="2" stroke-dasharray="6 6"/>
+                    <path d="M280 120 L350 200 L280 280" stroke="#2a2a2a" stroke-width="2"/>
+                    <path d="M180 120 L180 280" stroke="var(--accent-green)" stroke-width="1" opacity="0.3"/>
+                    
+                    <circle cx="100" cy="200" r="8" fill="#e2e8f0"/>
+                    <circle cx="180" cy="120" r="12" fill="var(--bg-dark)" stroke="var(--accent-green)" stroke-width="3"/>
+                    <circle cx="180" cy="280" r="12" fill="var(--bg-dark)" stroke="var(--accent-green)" stroke-width="3"/>
+                    <circle cx="280" cy="120" r="8" fill="#e2e8f0"/>
+                    <circle cx="280" cy="280" r="8" fill="#e2e8f0"/>
+                    <circle cx="350" cy="200" r="16" fill="var(--accent-green)"/>
+                    <circle cx="350" cy="200" r="24" stroke="var(--accent-green)" stroke-width="1" fill="none" opacity="0.5"/>
+                    
+                    <text x="160" y="100" font-family="'Fira Code', monospace" font-size="12" fill="#94a3b8">&lt;div/&gt;</text>
+                    <text x="160" y="320" font-family="'Fira Code', monospace" font-size="12" fill="#94a3b8">{ API }</text>
+                    <text x="320" y="180" font-family="'Fira Code', monospace" font-size="14" fill="var(--bg-dark)">01</text>
+                </svg>
+            </div>
 
+        </div>
 
+        <a href="#projetos" class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span class="scroll-text">SCROLL</span>
+        </a>
+    </section>
 
+    <section id="projetos">
+        <h2 class="section-title">ls ./projetos</h2>
+        <div class="projects-grid">
+            
+            <div class="term-window project-card">
+                <div class="term-header">
+                    <div class="term-controls"><div class="control close"></div><div class="control min"></div><div class="control max"></div></div>
+                    <div class="term-title">anjo_gabriel.exe</div>
+                </div>
+                <div class="term-body">
+                    <div class="project-title">Sistema de Gestão Escolar</div>
+                    <p style="color: var(--text-muted); font-family: var(--font-sans);">Dashboard administrativo completo com controle de matrículas, contratos e acompanhamento financeiro.</p>
+                    <div class="project-tech">[UI/UX, Dashboards, Banco de Dados]</div>
+                </div>
+            </div>
 
+            <div class="term-window project-card">
+                <div class="term-header">
+                    <div class="term-controls"><div class="control close"></div><div class="control min"></div><div class="control max"></div></div>
+                    <div class="term-title">credenciamento.sh</div>
+                </div>
+                <div class="term-body">
+                    <div class="project-title">Plataforma Médica</div>
+                    <p style="color: var(--text-muted); font-family: var(--font-sans);">Reconciliação de prestadores, eliminação de duplicidades e organização de faturamento em Sidrolândia.</p>
+                    <div class="project-tech">[Lógica de Dados, Gestão Médica]</div>
+                </div>
+            </div>
+
+            <div class="term-window project-card">
+                <div class="term-header">
+                    <div class="term-controls"><div class="control close"></div><div class="control min"></div><div class="control max"></div></div>
+                    <div class="term-title">logica.bin</div>
+                </div>
+                <div class="term-body">
+                    <div class="project-title">Arquitetura Lógica</div>
+                    <p style="color: var(--text-muted); font-family: var(--font-sans);">Projetos envolvendo eletrônica digital, tabelas verdade e conversão de base estrutural.</p>
+                    <div class="project-tech">[Eletrônica Digital, Binário/Hex]</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="sobre">
+        <h2 class="section-title">cat profile.json</h2>
+        
+        <div class="term-window">
+            <div class="term-header">
+                <div class="term-controls">
+                    <div class="control close"></div><div class="control min"></div><div class="control max"></div>
+                </div>
+                <div class="term-title">biografia.js</div>
+            </div>
+            <div class="term-body about-content">
+                <div>
+                    <span style="color: var(--accent-blue);">const</span> william = {<br>
+                    &nbsp;&nbsp;role: <span style="color: var(--accent-green);">"Desenvolvedor & System Architect"</span>,<br>
+                    &nbsp;&nbsp;focus: <span style="color: var(--accent-green);">"Front-end minimalista e Back-end robusto"</span>,<br>
+                    &nbsp;&nbsp;passions: [<span style="color: var(--accent-green);">"Lógica"</span>, <span style="color: var(--accent-green);">"IA Images"</span>]<br>
+                    };
+                    <br><br>
+                    <p style="font-family: var(--font-sans); color: var(--text-muted); line-height: 1.8;">
+                        Minha especialidade é arquitetar sistemas que facilitam a vida do usuário. Transformo problemas complexos — como o gerenciamento de centenas de dados financeiros e médicos — em dashboards fluidos, modulares e visualmente agradáveis.
+                    </p>
+                </div>
+                
+                <div>
+                    <div style="color: var(--text-muted); margin-bottom: 1rem; font-family: var(--font-sans);">// Stack & Habilidades</div>
+                    <ul class="skills-list" style="font-family: var(--font-mono); font-size: 0.95rem;">
+                        <li>Front-end (Dashboards & UI)</li>
+                        <li>Lógica de Programação</li>
+                        <li>Processamento de Faturamento</li>
+                        <li>Eletrônica Digital (Portas Lógicas)</li>
+                        <li>Edição de Imagem com IA</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes fadeIn { to { opacity: 1; } }
+    </style>
+
+    <script>
+        const text = "Dev Front-end & Systems.\nConstruindo interfaces limpas.\nResolvendo lógicas complexas.";
+        const typewriterElement = document.getElementById('typewriter');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                if (text.charAt(i) === '\n') {
+                    typewriterElement.innerHTML += '<br><br>';
+                } else {
+                    typewriterElement.innerHTML += text.charAt(i);
+                }
+                i++;
+                setTimeout(typeWriter, 40);
+            }
+        }
+
+        window.onload = () => setTimeout(typeWriter, 500);
+    </script>
 </body>
 </html>
