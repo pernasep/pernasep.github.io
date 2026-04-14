@@ -4,270 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>William | WG Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0a0a0a;
-            --term-bg: #111111;
-            --term-border: #2a2a2a;
-            --text-main: #e2e8f0;
-            --text-muted: #94a3b8;
-            --accent-green: #00ff41; 
-            --accent-blue: #3b82f6;
-            --font-mono: 'Fira Code', monospace;
-            --font-sans: 'Inter', sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navbar com a Logo Minimalista WG */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(12px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 5%;
-            z-index: 1000;
-            border-bottom: 1px solid var(--term-border);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover { color: var(--accent-green); }
-
-        /* Estrutura das Seções */
-        section {
-            min-height: 100vh;
-            padding: 120px 10% 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative; /* Para posicionar o scroll indicator */
-        }
-
-        .section-title {
-            font-family: var(--font-mono);
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: var(--text-main);
-        }
-        .section-title::before {
-            content: "william@os:~/$ ";
-            color: var(--accent-green);
-        }
-
-        /* Hero Grid - Dividindo a tela em duas metades */
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        /* Animação da Ilustração Minimalista */
-        .illustration-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Componente de Janela de Terminal */
-        .term-window {
-            background: var(--term-bg);
-            border: 1px solid var(--term-border);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            width: 100%;
-        }
-
-        .term-header {
-            background: #1a1a1a;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--term-border);
-        }
-
-        .term-controls { display: flex; gap: 8px; }
-        .control { width: 12px; height: 12px; border-radius: 50%; }
-        .close { background: #ff5f56; }
-        .min { background: #ffbd2e; }
-        .max { background: #27c93f; }
-
-        .term-title {
-            margin: 0 auto;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-        }
-
-        .term-body {
-            padding: 2rem;
-            font-family: var(--font-mono);
-            font-size: 1rem;
-        }
-
-        /* Hero Text e Botão */
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 1.1em;
-            background-color: var(--accent-green);
-            vertical-align: middle;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        .btn {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.8rem 1.5rem;
-            background: transparent;
-            color: var(--accent-green);
-            border: 1px solid var(--accent-green);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        .btn:hover {
-            background: var(--accent-green);
-            color: var(--bg-dark);
-        }
-
-        /* INDICADOR DE SCROLL ANIMADO */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0;
-            animation: fadeInScroll 2s forwards 3.5s;
-            text-decoration: none;
-        }
-
-        .mouse {
-            width: 26px;
-            height: 40px;
-            border: 2px solid var(--text-muted);
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            padding-top: 6px;
-            margin-bottom: 8px;
-        }
-
-        .wheel {
-            width: 4px;
-            height: 8px;
-            background-color: var(--accent-green);
-            border-radius: 2px;
-            animation: scrollWheel 2s infinite;
-        }
-
-        .scroll-text {
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-        }
-
-        @keyframes scrollWheel {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(10px); opacity: 0; }
-        }
-
-        @keyframes fadeInScroll {
-            to { opacity: 1; }
-        }
-
-        /* Grid de Projetos */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card { margin-bottom: 0; }
-        .project-card .term-body { display: flex; flex-direction: column; gap: 1rem; }
-        .project-title { color: var(--text-main); font-weight: bold; font-family: var(--font-sans); font-size: 1.2rem;}
-        .project-tech { color: var(--accent-green); font-size: 0.85rem; }
-
-        /* Sobre */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .skills-list { list-style: none; }
-        .skills-list li { margin-bottom: 0.8rem; color: var(--text-muted); }
-        .skills-list li::before {
-            content: ">> ";
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        /* Responsividade */
-        @media (max-width: 968px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .illustration-container { display: none; }
-            .about-content { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 600px) {
-            nav { flex-direction: column; gap: 1rem; padding: 1rem; }
-            .nav-links { justify-content: center; gap: 1rem; flex-wrap: wrap; }
-            .scroll-indicator { display: none; /* Esconde no celular para não atrapalhar */ }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <a href="logo.png" class="logo-container">
-            <svg height="35" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="32" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="#e2e8f0" letter-spacing="-3">W</text>
-                <text x="32" y="32" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="var(--accent-green)" letter-spacing="-3">G</text>
-                <polygon points="85,10 88,19 98,19 90,25 93,34 85,28 77,34 80,25 72,19 82,19" fill="var(--accent-green)"/>
-            </svg>
+        <a href="#hero" class="logo-container">
+            <img src="logotransparente.png" alt="William G." class="nav-photo">
         </a>
         <div class="nav-links">
             <a href="#hero">~/inicio</a>
@@ -276,9 +22,10 @@
         </div>
     </nav>
 
+    <!-- HERO -->
     <section id="hero">
         <div class="hero-grid">
-            
+
             <div class="term-window">
                 <div class="term-header">
                     <div class="term-controls">
@@ -289,38 +36,36 @@
                     <div class="term-title">bash - william@dev</div>
                 </div>
                 <div class="term-body">
-                    <div style="color: var(--text-muted); margin-bottom: 1rem;">Conectado a william-os...</div>
-                    <span style="color: var(--accent-green)">guest@william:~$</span> ./start.sh <br><br>
-                    <div id="typewriter" style="min-height: 80px;"></div><span class="cursor"></span>
+                    <div style="color:var(--text-muted);margin-bottom:1rem;">Conectado a william-os...</div>
+                    <span style="color:var(--accent-green)">guest@william:~$</span> ./start.sh<br><br>
+                    <div id="typewriter" style="min-height:80px;"></div><span class="cursor"></span>
                     <br>
-                    <a href="#projetos" class="btn" style="opacity: 0; animation: fadeIn 1s forwards 2.5s;">> cd Projetos</a>
+                    <a href="#projetos" class="btn">&gt; cd Projetos</a>
                 </div>
             </div>
 
-            <div class="illustration-container">
+            <div class="illustration-container" aria-hidden="true">
                 <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M100 200 L180 120 L280 120" stroke="#2a2a2a" stroke-width="2" stroke-dasharray="6 6"/>
                     <path d="M100 200 L180 280 L280 280" stroke="#2a2a2a" stroke-width="2" stroke-dasharray="6 6"/>
                     <path d="M280 120 L350 200 L280 280" stroke="#2a2a2a" stroke-width="2"/>
-                    <path d="M180 120 L180 280" stroke="var(--accent-green)" stroke-width="1" opacity="0.3"/>
-                    
-                    <circle cx="100" cy="200" r="8" fill="#e2e8f0"/>
+                    <path d="M180 120 L180 280" stroke="var(--accent-green)" stroke-width="1" opacity=".3"/>
+                    <circle cx="100" cy="200" r="8"  fill="#e2e8f0"/>
                     <circle cx="180" cy="120" r="12" fill="var(--bg-dark)" stroke="var(--accent-green)" stroke-width="3"/>
                     <circle cx="180" cy="280" r="12" fill="var(--bg-dark)" stroke="var(--accent-green)" stroke-width="3"/>
-                    <circle cx="280" cy="120" r="8" fill="#e2e8f0"/>
-                    <circle cx="280" cy="280" r="8" fill="#e2e8f0"/>
+                    <circle cx="280" cy="120" r="8"  fill="#e2e8f0"/>
+                    <circle cx="280" cy="280" r="8"  fill="#e2e8f0"/>
                     <circle cx="350" cy="200" r="16" fill="var(--accent-green)"/>
-                    <circle cx="350" cy="200" r="24" stroke="var(--accent-green)" stroke-width="1" fill="none" opacity="0.5"/>
-                    
-                    <text x="160" y="100" font-family="'Fira Code', monospace" font-size="12" fill="#94a3b8">&lt;div/&gt;</text>
-                    <text x="160" y="320" font-family="'Fira Code', monospace" font-size="12" fill="#94a3b8">{ API }</text>
-                    <text x="320" y="180" font-family="'Fira Code', monospace" font-size="14" fill="var(--bg-dark)">01</text>
+                    <circle cx="350" cy="200" r="24" stroke="var(--accent-green)" stroke-width="1" fill="none" opacity=".5"/>
+                    <text x="160" y="100" font-family="'Fira Code',monospace" font-size="12" fill="#94a3b8">&lt;div/&gt;</text>
+                    <text x="160" y="320" font-family="'Fira Code',monospace" font-size="12" fill="#94a3b8">{ API }</text>
+                    <text x="320" y="180" font-family="'Fira Code',monospace" font-size="14" fill="var(--bg-dark)">01</text>
                 </svg>
             </div>
 
         </div>
 
-        <a href="#projetos" class="scroll-indicator">
+        <a href="#projetos" class="scroll-indicator" aria-label="Rolar para projetos">
             <div class="mouse">
                 <div class="wheel"></div>
             </div>
@@ -328,42 +73,55 @@
         </a>
     </section>
 
+    <!-- PROJETOS -->
     <section id="projetos">
         <h2 class="section-title">ls ./projetos</h2>
         <div class="projects-grid">
-            
+
             <div class="term-window project-card">
                 <div class="term-header">
-                    <div class="term-controls"><div class="control close"></div><div class="control min"></div><div class="control max"></div></div>
+                    <div class="term-controls">
+                        <div class="control close"></div>
+                        <div class="control min"></div>
+                        <div class="control max"></div>
+                    </div>
                     <div class="term-title">anjo_gabriel.exe</div>
                 </div>
                 <div class="term-body">
                     <div class="project-title">Sistema de Gestão Escolar</div>
-                    <p style="color: var(--text-muted); font-family: var(--font-sans);">Dashboard administrativo completo com controle de matrículas, contratos e acompanhamento financeiro.</p>
+                    <p style="color:var(--text-muted);font-family:var(--font-sans);">Dashboard administrativo completo com controle de matrículas, contratos e acompanhamento financeiro.</p>
                     <div class="project-tech">[UI/UX, Dashboards, Banco de Dados]</div>
                 </div>
             </div>
 
             <div class="term-window project-card">
                 <div class="term-header">
-                    <div class="term-controls"><div class="control close"></div><div class="control min"></div><div class="control max"></div></div>
+                    <div class="term-controls">
+                        <div class="control close"></div>
+                        <div class="control min"></div>
+                        <div class="control max"></div>
+                    </div>
                     <div class="term-title">credenciamento.sh</div>
                 </div>
                 <div class="term-body">
                     <div class="project-title">Plataforma Médica</div>
-                    <p style="color: var(--text-muted); font-family: var(--font-sans);">Reconciliação de prestadores, eliminação de duplicidades e organização de faturamento em Sidrolândia.</p>
+                    <p style="color:var(--text-muted);font-family:var(--font-sans);">Reconciliação de prestadores, eliminação de duplicidades e organização de faturamento em Sidrolândia.</p>
                     <div class="project-tech">[Lógica de Dados, Gestão Médica]</div>
                 </div>
             </div>
 
             <div class="term-window project-card">
                 <div class="term-header">
-                    <div class="term-controls"><div class="control close"></div><div class="control min"></div><div class="control max"></div></div>
+                    <div class="term-controls">
+                        <div class="control close"></div>
+                        <div class="control min"></div>
+                        <div class="control max"></div>
+                    </div>
                     <div class="term-title">logica.bin</div>
                 </div>
                 <div class="term-body">
                     <div class="project-title">Arquitetura Lógica</div>
-                    <p style="color: var(--text-muted); font-family: var(--font-sans);">Projetos envolvendo eletrônica digital, tabelas verdade e conversão de base estrutural.</p>
+                    <p style="color:var(--text-muted);font-family:var(--font-sans);">Projetos envolvendo eletrônica digital, tabelas verdade e conversão de base estrutural.</p>
                     <div class="project-tech">[Eletrônica Digital, Binário/Hex]</div>
                 </div>
             </div>
@@ -371,33 +129,34 @@
         </div>
     </section>
 
+    <!-- SOBRE -->
     <section id="sobre">
         <h2 class="section-title">cat profile.json</h2>
-        
         <div class="term-window">
             <div class="term-header">
                 <div class="term-controls">
-                    <div class="control close"></div><div class="control min"></div><div class="control max"></div>
+                    <div class="control close"></div>
+                    <div class="control min"></div>
+                    <div class="control max"></div>
                 </div>
                 <div class="term-title">biografia.js</div>
             </div>
             <div class="term-body about-content">
                 <div>
-                    <span style="color: var(--accent-blue);">const</span> william = {<br>
-                    &nbsp;&nbsp;role: <span style="color: var(--accent-green);">"Desenvolvedor & System Architect"</span>,<br>
-                    &nbsp;&nbsp;focus: <span style="color: var(--accent-green);">"Front-end minimalista e Back-end robusto"</span>,<br>
-                    &nbsp;&nbsp;passions: [<span style="color: var(--accent-green);">"Lógica"</span>, <span style="color: var(--accent-green);">"IA Images"</span>]<br>
+                    <span style="color:var(--accent-blue);">const</span> william = {<br>
+                    &nbsp;&nbsp;role: <span style="color:var(--accent-green);">"Desenvolvedor &amp; System Architect"</span>,<br>
+                    &nbsp;&nbsp;focus: <span style="color:var(--accent-green);">"Front-end minimalista e Back-end robusto"</span>,<br>
+                    &nbsp;&nbsp;passions: [<span style="color:var(--accent-green);">"Lógica"</span>, <span style="color:var(--accent-green);">"IA Images"</span>]<br>
                     };
                     <br><br>
-                    <p style="font-family: var(--font-sans); color: var(--text-muted); line-height: 1.8;">
+                    <p class="about-code">
                         Minha especialidade é arquitetar sistemas que facilitam a vida do usuário. Transformo problemas complexos — como o gerenciamento de centenas de dados financeiros e médicos — em dashboards fluidos, modulares e visualmente agradáveis.
                     </p>
                 </div>
-                
                 <div>
-                    <div style="color: var(--text-muted); margin-bottom: 1rem; font-family: var(--font-sans);">// Stack & Habilidades</div>
-                    <ul class="skills-list" style="font-family: var(--font-mono); font-size: 0.95rem;">
-                        <li>Front-end (Dashboards & UI)</li>
+                    <div class="skills-comment">// Stack &amp; Habilidades</div>
+                    <ul class="skills-list" style="font-family:var(--font-mono);font-size:.95rem;">
+                        <li>Front-end (Dashboards &amp; UI)</li>
                         <li>Lógica de Programação</li>
                         <li>Processamento de Faturamento</li>
                         <li>Eletrônica Digital (Portas Lógicas)</li>
@@ -408,28 +167,6 @@
         </div>
     </section>
 
-    <style>
-        @keyframes fadeIn { to { opacity: 1; } }
-    </style>
-
-    <script>
-        const text = "Dev Front-end & Systems.\nConstruindo interfaces limpas.\nResolvendo lógicas complexas.";
-        const typewriterElement = document.getElementById('typewriter');
-        let i = 0;
-
-        function typeWriter() {
-            if (i < text.length) {
-                if (text.charAt(i) === '\n') {
-                    typewriterElement.innerHTML += '<br><br>';
-                } else {
-                    typewriterElement.innerHTML += text.charAt(i);
-                }
-                i++;
-                setTimeout(typeWriter, 40);
-            }
-        }
-
-        window.onload = () => setTimeout(typeWriter, 500);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
