@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>William | WG Portfolio</title>
+    <title>William Gabriel Barbosa Meneghini</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,7 +24,10 @@
 
     <!-- HERO -->
     <section id="hero">
-        <div class="hero-grid">
+        <div class="hero-content">
+            <div class="hero-label">
+                <span class="prompt">guest@william:~$</span> ./start.sh
+            </div>
 
             <div class="term-window">
                 <div class="term-header">
@@ -33,36 +36,18 @@
                         <div class="control min"></div>
                         <div class="control max"></div>
                     </div>
-                    <div class="term-title">bash - william@dev</div>
+                    <div class="term-title">bash — william@dev</div>
                 </div>
                 <div class="term-body">
-                    <div style="color:var(--text-muted);margin-bottom:1rem;">Conectado a william-os...</div>
-                    <span style="color:var(--accent-green)">guest@william:~$</span> ./start.sh<br><br>
-                    <div id="typewriter" style="min-height:80px;"></div><span class="cursor"></span>
-                    <br>
-                    <a href="#projetos" class="btn">&gt; cd Projetos</a>
+                    <div class="term-connected">Conectado a william-os...</div>
+                    <div id="typewriter" class="typewriter-text"></div>
+                    <span class="cursor"></span>
+                    <div class="hero-actions">
+                        <a href="#projetos" class="btn">&gt; cd Projetos</a>
+                        <a href="#sobre" class="btn btn-ghost">&gt; cat profile.json</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="illustration-container" aria-hidden="true">
-                <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M100 200 L180 120 L280 120" stroke="#2a2a2a" stroke-width="2" stroke-dasharray="6 6"/>
-                    <path d="M100 200 L180 280 L280 280" stroke="#2a2a2a" stroke-width="2" stroke-dasharray="6 6"/>
-                    <path d="M280 120 L350 200 L280 280" stroke="#2a2a2a" stroke-width="2"/>
-                    <path d="M180 120 L180 280" stroke="var(--accent-green)" stroke-width="1" opacity=".3"/>
-                    <circle cx="100" cy="200" r="8"  fill="#e2e8f0"/>
-                    <circle cx="180" cy="120" r="12" fill="var(--bg-dark)" stroke="var(--accent-green)" stroke-width="3"/>
-                    <circle cx="180" cy="280" r="12" fill="var(--bg-dark)" stroke="var(--accent-green)" stroke-width="3"/>
-                    <circle cx="280" cy="120" r="8"  fill="#e2e8f0"/>
-                    <circle cx="280" cy="280" r="8"  fill="#e2e8f0"/>
-                    <circle cx="350" cy="200" r="16" fill="var(--accent-green)"/>
-                    <circle cx="350" cy="200" r="24" stroke="var(--accent-green)" stroke-width="1" fill="none" opacity=".5"/>
-                    <text x="160" y="100" font-family="'Fira Code',monospace" font-size="12" fill="#94a3b8">&lt;div/&gt;</text>
-                    <text x="160" y="320" font-family="'Fira Code',monospace" font-size="12" fill="#94a3b8">{ API }</text>
-                    <text x="320" y="180" font-family="'Fira Code',monospace" font-size="14" fill="var(--bg-dark)">01</text>
-                </svg>
-            </div>
-
         </div>
 
         <a href="#projetos" class="scroll-indicator" aria-label="Rolar para projetos">
@@ -75,95 +60,89 @@
 
     <!-- PROJETOS -->
     <section id="projetos">
-        <h2 class="section-title">ls ./projetos</h2>
+        <div class="section-header">
+            <span class="section-prompt">~/projetos</span>
+            <h2 class="section-title">Trabalhos</h2>
+        </div>
+
         <div class="projects-grid">
 
-            <div class="term-window project-card">
-                <div class="term-header">
-                    <div class="term-controls">
-                        <div class="control close"></div>
-                        <div class="control min"></div>
-                        <div class="control max"></div>
-                    </div>
-                    <div class="term-title">anjo_gabriel.exe</div>
+            <div class="project-card">
+                <div class="project-card-top">
+                    <span class="project-index">01</span>
+                    <span class="project-file">anjo_gabriel.exe</span>
                 </div>
-                <div class="term-body">
-                    <div class="project-title">Sistema de Gestão Escolar</div>
-                    <p style="color:var(--text-muted);font-family:var(--font-sans);">Dashboard administrativo completo com controle de matrículas, contratos e acompanhamento financeiro.</p>
-                    <div class="project-tech">[UI/UX, Dashboards, Banco de Dados]</div>
+                <h3 class="project-title">Sistema de Gestão Escolar</h3>
+                <p class="project-desc">Dashboard administrativo completo com controle de matrículas, contratos e acompanhamento financeiro.</p>
+                <div class="project-tags">
+                    <span class="tag">UI/UX</span>
+                    <span class="tag">Dashboards</span>
+                    <span class="tag">Banco de Dados</span>
                 </div>
             </div>
 
-            <div class="term-window project-card">
-                <div class="term-header">
-                    <div class="term-controls">
-                        <div class="control close"></div>
-                        <div class="control min"></div>
-                        <div class="control max"></div>
-                    </div>
-                    <div class="term-title">credenciamento.sh</div>
+            <div class="project-card">
+                <div class="project-card-top">
+                    <span class="project-index">02</span>
+                    <span class="project-file">E-Comerce de Roupas.sh</span>
                 </div>
-                <div class="term-body">
-                    <div class="project-title">Plataforma Médica</div>
-                    <p style="color:var(--text-muted);font-family:var(--font-sans);">Reconciliação de prestadores, eliminação de duplicidades e organização de faturamento em Sidrolândia.</p>
-                    <div class="project-tech">[Lógica de Dados, Gestão Médica]</div>
+                <h3 class="project-title">Loja HIGHWEAR</h3>
+                <p class="project-desc">Uma marca de roupas independente que vende roupas online.</p>
+                <div class="project-tags">
+                    <span class="tag">Gestão de Estoque</span>
+                    <span class="tag">Cadastro de Usuário e Peças de Roupa</span>
                 </div>
             </div>
 
-            <div class="term-window project-card">
-                <div class="term-header">
-                    <div class="term-controls">
-                        <div class="control close"></div>
-                        <div class="control min"></div>
-                        <div class="control max"></div>
-                    </div>
-                    <div class="term-title">logica.bin</div>
-                </div>
-                <div class="term-body">
-                    <div class="project-title">Arquitetura Lógica</div>
-                    <p style="color:var(--text-muted);font-family:var(--font-sans);">Projetos envolvendo eletrônica digital, tabelas verdade e conversão de base estrutural.</p>
-                    <div class="project-tech">[Eletrônica Digital, Binário/Hex]</div>
-                </div>
-            </div>
+            <div class="project-card coming-soon">
+    <div class="project-card-top">
+        <span class="project-index">03</span>
+        <span class="project-file">em_breve.bin</span>
+    </div>
+    <h3 class="project-title">Em Breve...</h3>
+    <p class="project-desc">Algo novo está sendo arquitetado. Fique de olho — este projeto será revelado em breve.</p>
+    <div class="project-tags">
+        <span class="tag">🔒 Bloqueado</span>
+        <span class="tag">Coming Soon</span>
+    </div>
+</div>
 
         </div>
     </section>
 
     <!-- SOBRE -->
     <section id="sobre">
-        <h2 class="section-title">cat profile.json</h2>
-        <div class="term-window">
-            <div class="term-header">
-                <div class="term-controls">
-                    <div class="control close"></div>
-                    <div class="control min"></div>
-                    <div class="control max"></div>
-                </div>
-                <div class="term-title">biografia.js</div>
-            </div>
-            <div class="term-body about-content">
-                <div>
-                    <span style="color:var(--accent-blue);">const</span> william = {<br>
-                    &nbsp;&nbsp;role: <span style="color:var(--accent-green);">"Desenvolvedor &amp; System Architect"</span>,<br>
-                    &nbsp;&nbsp;focus: <span style="color:var(--accent-green);">"Front-end minimalista e Back-end robusto"</span>,<br>
-                    &nbsp;&nbsp;passions: [<span style="color:var(--accent-green);">"Lógica"</span>, <span style="color:var(--accent-green);">"IA Images"</span>]<br>
+        <div class="section-header">
+            <span class="section-prompt">~/sobre</span>
+            <h2 class="section-title">Perfil</h2>
+        </div>
+
+        <div class="about-grid">
+
+            <div class="about-bio">
+                <div class="about-code-block">
+                    <span class="kw-blue">const</span> william = {<br>
+                    &nbsp;&nbsp;role: <span class="kw-green">"Dev &amp; System Architect"</span>,<br>
+                    &nbsp;&nbsp;focus: <span class="kw-green">"Front-end minimalista,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back-end robusto"</span>,<br>
+                    &nbsp;&nbsp;passions: [<span class="kw-green">"Lógica"</span>, <span class="kw-green">"IA Images"</span>]<br>
                     };
-                    <br><br>
-                    <p class="about-code">
-                        Minha especialidade é arquitetar sistemas que facilitam a vida do usuário. Transformo problemas complexos — como o gerenciamento de centenas de dados financeiros e médicos — em dashboards fluidos, modulares e visualmente agradáveis.
-                    </p>
                 </div>
-                <div>
-                    <div class="skills-comment">// Stack &amp; Habilidades</div>
-                    <ul class="skills-list" style="font-family:var(--font-mono);font-size:.95rem;">
-                        <li>Front-end (Dashboards &amp; UI)</li>
-                        <li>Lógica de Programação</li>
-                        <li>Processamento de Faturamento</li>
-                        <li>Eletrônica Digital (Portas Lógicas)</li>
-                        <li>Edição de Imagem com IA</li>
-                    </ul>
-                </div>
+                <p class="about-text">
+                    Minha especialidade é arquitetar sistemas que facilitam a vida do usuário. Transformo problemas complexos — como o gerenciamento de centenas de dados financeiros e cadastros — em dashboards fluidos, modulares e visualmente agradáveis.
+                </p>
             </div>
+
+            <div class="about-skills">
+                <div class="skills-label">// Stack &amp; Habilidades</div>
+                <ul class="skills-list">
+                    <li>Front-end (Dashboards &amp; UI)</li>
+                    <li>Lógica de Programação</li>
+                    <li>Processamento de Faturamento</li>
+                    <li>Cadastramento em Geral</li>
+                    <li>Edição de Imagem com IA</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
