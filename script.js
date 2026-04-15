@@ -15,9 +15,9 @@ function type() {
     } else {
         li++;
         if (li < lines.length) {
-            el.innerHTML += '<br><br>';
+            el.innerHTML += '<br>';
             ci = 0;
-            setTimeout(type, 40);
+            setTimeout(type, 400);
         }
     }
 }
