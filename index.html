@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>William Gabriel Barbosa Meneghini</title>
+    <meta name="description" content="Portfólio de William Gabriel Meneghini, com projetos de desenvolvimento front-end e experiência prática em suporte e TI.">
+    <meta name="author" content="William Gabriel Meneghini">
+    <title>William Gabriel | Front-end e Suporte/TI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <nav>
-        <a href="#hero" class="logo-container">
-            <img src="logotransparente.png" alt="William G." class="nav-photo">
+    <nav aria-label="Navegação principal">
+        <a href="#hero" class="logo-container" aria-label="Ir para o início">
+            <img src="logotransparente.png" alt="Logotipo de William Gabriel" class="nav-photo">
         </a>
         <div class="nav-links">
             <a href="#hero">~/inicio</a>
@@ -22,129 +23,132 @@
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section id="hero">
-        <div class="hero-content">
-            <div class="hero-label">
-                <span class="prompt">guest@william:~$</span> ./start.sh
-            </div>
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <div class="hero-label">
+                    <span class="prompt">guest@william:~$</span> ./start.sh
+                </div>
 
-            <div class="term-window">
-                <div class="term-header">
-                    <div class="term-controls">
-                        <div class="control close"></div>
-                        <div class="control min"></div>
-                        <div class="control max"></div>
+                <div class="term-window">
+                    <div class="term-header">
+                        <div class="term-controls" aria-hidden="true">
+                            <div class="control close"></div>
+                            <div class="control min"></div>
+                            <div class="control max"></div>
+                        </div>
+                        <div class="term-title">bash — william@dev</div>
                     </div>
-                    <div class="term-title">bash — william@dev</div>
-                </div>
-                <div class="term-body">
-                    <div class="term-connected">Conectado a william-os...</div>
-                    <div id="typewriter" class="typewriter-text"></div>
-                    <span class="cursor"></span>
-                    <div class="hero-actions">
-                        <a href="#projetos" class="btn">&gt; cd Projetos</a>
-                        <a href="#sobre" class="btn btn-ghost">&gt; cat profile.json</a>
+                    <div class="term-body">
+                        <div class="term-connected">Perfil carregado com sucesso...</div>
+                        <div id="typewriter" class="typewriter-text" aria-live="polite"></div>
+                        <span class="cursor" aria-hidden="true"></span>
+                        <div class="hero-actions">
+                            <a href="#projetos" class="btn">&gt; ver projetos</a>
+                            <a href="https://github.com/williamgabrielbm" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">&gt; abrir GitHub</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <a href="#projetos" class="scroll-indicator" aria-label="Rolar para projetos">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span class="scroll-text">SCROLL</span>
-        </a>
-    </section>
+            <a href="#projetos" class="scroll-indicator" aria-label="Ir para a seção de projetos">
+                <div class="mouse" aria-hidden="true"><div class="wheel"></div></div>
+                <span class="scroll-text">SCROLL</span>
+            </a>
+        </section>
 
-    <!-- PROJETOS -->
-    <section id="projetos">
-        <div class="section-header">
-            <span class="section-prompt">~/projetos</span>
-            <h2 class="section-title">Trabalhos</h2>
-        </div>
-
-        <div class="projects-grid">
-
-            <div class="project-card">
-                <div class="project-card-top">
-                    <span class="project-index">01</span>
-                    <span class="project-file">anjo_gabriel.exe</span>
-                </div>
-                <h3 class="project-title">Sistema de Gestão Escolar</h3>
-                <p class="project-desc">Dashboard administrativo completo com controle de matrículas, contratos e acompanhamento financeiro.</p>
-                <div class="project-tags">
-                    <span class="tag">UI/UX</span>
-                    <span class="tag">Dashboards</span>
-                    <span class="tag">Banco de Dados</span>
-                </div>
+        <section id="projetos">
+            <div class="section-header">
+                <span class="section-prompt">~/projetos</span>
+                <h1 class="section-title">Projetos em destaque</h1>
             </div>
 
-            <div class="project-card">
-                <div class="project-card-top">
-                    <span class="project-index">02</span>
-                    <span class="project-file">E-Comerce de Roupas.sh</span>
-                </div>
-                <h3 class="project-title">Loja HIGHWEAR</h3>
-                <p class="project-desc">Uma marca de roupas independente que vende roupas online.</p>
-                <div class="project-tags">
-                    <span class="tag">Gestão de Estoque</span>
-                    <span class="tag">Cadastro de Usuário e Peças de Roupa</span>
-                </div>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-index">01</span>
+                        <span class="project-file">gestao-escolar.html</span>
+                    </div>
+                    <h2 class="project-title">Sistema de Gestão Escolar</h2>
+                    <p class="project-desc">Protótipo front-end para cadastro de alunos, geração de contratos, dashboard e acompanhamento de mensalidades.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Chart.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/williamgabrielbm/sistema-anjo-gabriel" target="_blank" rel="noopener noreferrer">Ver repositório →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-index">02</span>
+                        <span class="project-file">highwear.php</span>
+                    </div>
+                    <h2 class="project-title">HIGHWEAR Company</h2>
+                    <p class="project-desc">E-commerce acadêmico desenvolvido como TCC, com catálogo, autenticação, carrinho, checkout e administração de produtos.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Tailwind CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/williamgabrielbm/HIGHWEAR-Company" target="_blank" rel="noopener noreferrer">Ver repositório →</a>
+                    </div>
+                </article>
+
+                <article class="project-card coming-soon">
+                    <div class="project-card-top">
+                        <span class="project-index">03</span>
+                        <span class="project-file">em_breve.bin</span>
+                    </div>
+                    <h2 class="project-title">Próximo projeto</h2>
+                    <p class="project-desc">Novo estudo em desenvolvimento para ampliar meu portfólio de interfaces e soluções de suporte.</p>
+                    <div class="project-tags">
+                        <span class="tag">Em desenvolvimento</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="section-header">
+                <span class="section-prompt">~/sobre</span>
+                <h1 class="section-title">Sobre mim</h1>
             </div>
 
-            <div class="project-card coming-soon">
-    <div class="project-card-top">
-        <span class="project-index">03</span>
-        <span class="project-file">em_breve.bin</span>
-    </div>
-    <h3 class="project-title">Em Breve...</h3>
-    <p class="project-desc">Algo novo está sendo arquitetado. Fique de olho — este projeto será revelado em breve.</p>
-    <div class="project-tags">
-        <span class="tag">🔒 Bloqueado</span>
-        <span class="tag">Coming Soon</span>
-    </div>
-</div>
-
-        </div>
-    </section>
-
-    <!-- SOBRE -->
-    <section id="sobre">
-        <div class="section-header">
-            <span class="section-prompt">~/sobre</span>
-            <h2 class="section-title">Perfil</h2>
-        </div>
-
-        <div class="about-grid">
-
-            <div class="about-bio">
-                <div class="about-code-block">
-                    <span class="kw-blue">const</span> william = {<br>
-                    &nbsp;&nbsp;role: <span class="kw-green">"Dev &amp; System Architect"</span>,<br>
-                    &nbsp;&nbsp;focus: <span class="kw-green">"Front-end minimalista,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back-end robusto"</span>,<br>
-                    &nbsp;&nbsp;passions: [<span class="kw-green">"Lógica"</span>, <span class="kw-green">"IA Images"</span>]<br>
-                    };
+            <div class="about-grid">
+                <div class="about-bio">
+                    <div class="about-code-block">
+                        <span class="kw-blue">const</span> william = {<br>
+                        &nbsp;&nbsp;foco: <span class="kw-green">"Front-end"</span>,<br>
+                        &nbsp;&nbsp;diferencial: <span class="kw-green">"Suporte e TI"</span>,<br>
+                        &nbsp;&nbsp;objetivo: <span class="kw-green">"Criar soluções claras e úteis"</span><br>
+                        };
+                    </div>
+                    <p class="about-text">
+                        Sou Técnico em Informática e desenvolvedor em formação. Gosto de construir interfaces organizadas, entender a origem de problemas técnicos e transformar necessidades reais em soluções simples de usar. Busco oportunidades em front-end e suporte/TI para continuar evoluindo com projetos práticos.
+                    </p>
+                    <div class="about-actions">
+                        <a href="https://github.com/williamgabrielbm" class="btn btn-static" target="_blank" rel="noopener noreferrer">Conhecer meu GitHub</a>
+                    </div>
                 </div>
-                <p class="about-text">
-                    Minha especialidade é arquitetar sistemas que facilitam a vida do usuário. Transformo problemas complexos — como o gerenciamento de centenas de dados financeiros e cadastros — em dashboards fluidos, modulares e visualmente agradáveis.
-                </p>
-            </div>
 
-            <div class="about-skills">
-                <div class="skills-label">// Stack &amp; Habilidades</div>
-                <ul class="skills-list">
-                    <li>Front-end (Dashboards &amp; UI)</li>
-                    <li>Lógica de Programação</li>
-                    <li>Processamento de Faturamento</li>
-                    <li>Cadastramento em Geral</li>
-                    <li>Edição de Imagem com IA</li>
-                </ul>
+                <div class="about-skills">
+                    <div class="skills-label">// Tecnologias & habilidades</div>
+                    <ul class="skills-list">
+                        <li>HTML semântico e CSS responsivo</li>
+                        <li>JavaScript e manipulação do DOM</li>
+                        <li>Fundamentos de PHP e MySQL</li>
+                        <li>Diagnóstico e resolução de problemas</li>
+                        <li>Suporte ao usuário e documentação</li>
+                    </ul>
+                </div>
             </div>
-
-        </div>
-    </section>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
