@@ -1,24 +1,28 @@
 const lines = [
-    "Dev Front-end & Systems.",
-    "Construindo interfaces limpas.",
-    "Resolvendo lógicas complexas."
+    "Front-end & Suporte/TI.",
+    "Construindo interfaces responsivas.",
+    "Resolvendo problemas com clareza."
 ];
 
 const el = document.getElementById('typewriter');
-let li = 0, ci = 0;
+let lineIndex = 0;
+let charIndex = 0;
 
 function type() {
-    if (li >= lines.length) return;
-    if (ci < lines[li].length) {
-        el.innerHTML += lines[li][ci++];
+    if (lineIndex >= lines.length) return;
+
+    if (charIndex < lines[lineIndex].length) {
+        el.textContent += lines[lineIndex][charIndex++];
         setTimeout(type, 40);
-    } else {
-        li++;
-        if (li < lines.length) {
-            el.innerHTML += '<br>';
-            ci = 0;
-            setTimeout(type, 400);
-        }
+        return;
+    }
+
+    lineIndex++;
+
+    if (lineIndex < lines.length) {
+        el.appendChild(document.createElement('br'));
+        charIndex = 0;
+        setTimeout(type, 400);
     }
 }
 
