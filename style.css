@@ -435,3 +435,45 @@ section {
     .nav-links { justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
     .scroll-indicator { display: none; }
 }
+
+
+/* Links e estados de acessibilidade */
+.project-links {
+    margin-top: auto;
+    padding-top: .4rem;
+}
+
+.project-links a {
+    color: var(--accent-green);
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    text-decoration: none;
+}
+
+.project-links a:hover {
+    text-decoration: underline;
+}
+
+.about-actions {
+    margin-top: 1.5rem;
+}
+
+.btn-static {
+    opacity: 1;
+    animation: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
