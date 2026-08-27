@@ -1,25 +1,7 @@
-const lines = [
-    "Dev Front-end & Systems.",
-    "Construindo interfaces limpas.",
-    "Resolvendo lógicas complexas."
-];
-
-const el = document.getElementById('typewriter');
-let li = 0, ci = 0;
-
-function type() {
-    if (li >= lines.length) return;
-    if (ci < lines[li].length) {
-        el.innerHTML += lines[li][ci++];
-        setTimeout(type, 40);
-    } else {
-        li++;
-        if (li < lines.length) {
-            el.innerHTML += '<br>';
-            ci = 0;
-            setTimeout(type, 400);
-        }
-    }
+document.getElementById("year").textContent = new Date().getFullYear();
+const command = document.getElementById("command");
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const text = command.textContent; command.textContent = ""; let i = 0;
+  const type = () => { command.textContent += text[i++]; if (i < text.length) setTimeout(type, 65); };
+  setTimeout(type, 700);
 }
-
-window.addEventListener('load', () => setTimeout(type, 500));
